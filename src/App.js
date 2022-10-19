@@ -1,12 +1,13 @@
-import React from 'react';
-import './App.css';
+import Provider from './context/provider';
+import Table from './components/Table';
+import Form from './components/Form';
 
 function App() {
   return (
-    <>
-      <div>Hello, App!</div>
-      <span>Iniciando o projeto!</span>
-    </>
+    <Provider>
+      <Form />
+      <Table />
+    </Provider>
   );
 }
 
