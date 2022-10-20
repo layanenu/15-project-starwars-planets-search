@@ -27,7 +27,7 @@ export default function Table() {
         {
           data?.filter((el) => el.name.toUpperCase()
             .includes(inputNameFilter.toUpperCase()))
-            // .filter((elem) => elem.gender.toUpperCase().includes(gender.toUpperCase()))
+            // .filter((elem) => elem.resuts.toUpperCase().includes(coluna.toUpperCase()))
             .map((e) => (
               <tr key={ e.name }>
                 <td>{e.name}</td>
