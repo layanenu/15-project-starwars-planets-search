@@ -2,13 +2,16 @@ import PropTypes from 'prop-types';
 import { useCallback, useState, useEffect, useMemo } from 'react';
 import Context from './context';
 
+const columnFilterItens = [
+  'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+
 function Provider({ children }) {
   const [data, setData] = useState([]);
   const [inputNameFilter, setInputNameFilter] = useState('');
-  const [columnFilter, setColumnFilter] = useState('population');
+  const [columnFilter, setColumnFilter] = useState(columnFilterItens[0]);
   const [comparisonFilter, setComparisonFilter] = useState('maior que');
   const [valueFilter, setValueFilter] = useState(0);
-  // const [ordenar, setOrdenar] = useState('population');
+  const [NewColumnFilterItens, setNewColumnFilterItens] = useState(columnFilterItens);
 
   const handleInputNameFilter = useCallback(({ target }) => {
     setInputNameFilter(target.value);
@@ -44,16 +47,22 @@ function Provider({ children }) {
     if (comparisonFilter.includes('maior que')) {
       const filteredDate = data
         .filter((element) => Number(element[columnFilter]) > Number(valueFilter));
+      setNewColumnFilterItens(NewColumnFilterItens.filter((el) => el !== columnFilter));
+      setColumnFilter(NewColumnFilterItens[0]);
       setData(filteredDate);
     }
     if (comparisonFilter.includes('menor que')) {
       const filteredDate = data
         .filter((element) => Number(element[columnFilter]) < Number(valueFilter));
+      setNewColumnFilterItens(NewColumnFilterItens.filter((el) => el !== columnFilter));
+      setColumnFilter(NewColumnFilterItens[0]);
       setData(filteredDate);
     }
     if (comparisonFilter.includes('igual a')) {
       const filteredDate = data
         .filter((element) => Number(element[columnFilter]) === Number(valueFilter));
+      setNewColumnFilterItens(NewColumnFilterItens.filter((el) => el !== columnFilter));
+      setColumnFilter(NewColumnFilterItens[0]);
       setData(filteredDate);
     }
   });
@@ -69,6 +78,7 @@ function Provider({ children }) {
     handleComparisonFilter,
     handleValueFilter,
     handleClickFilterPlanet,
+    NewColumnFilterItens,
   }), [
     data,
     inputNameFilter,
@@ -80,6 +90,7 @@ function Provider({ children }) {
     handleComparisonFilter,
     handleValueFilter,
     handleClickFilterPlanet,
+    NewColumnFilterItens,
   ]);
 
   return (

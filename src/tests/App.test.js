@@ -37,5 +37,15 @@ describe('Testes para atingir 30% de cobertura total da aplicação', () => {
     userEvent.selectOptions(inputComparisonFilter, 'igual a');
     userEvent.type(inputValueFilter, '1000');
     userEvent.click(inputButtonFilter); 
+
+    userEvent.selectOptions(inputColumnFilter, 'orbital_period');
+    userEvent.selectOptions(inputComparisonFilter, 'maior que');
+    userEvent.type(inputValueFilter, '300');
+    userEvent.click(inputButtonFilter); 
+
+    userEvent.selectOptions(inputColumnFilter, 'diameter');
+    userEvent.selectOptions(inputComparisonFilter, 'menor que');
+    userEvent.type(inputValueFilter, '8000');
+    userEvent.click(inputButtonFilter); 
   });
 });
